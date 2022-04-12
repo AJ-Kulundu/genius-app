@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from '../features/counter/counterSlice';
 import { geniusApi } from '../services/api';
+import { createWrapper } from "next-redux-wrapper";
 
 export const store = configureStore({
   reducer: {
@@ -10,3 +11,5 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(geniusApi.middleware),
 })
+
+export const  wrapper = createWrapper(store,{debug:true})
