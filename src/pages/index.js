@@ -1,4 +1,3 @@
-
 import {
   Typography,
   Button,
@@ -11,10 +10,12 @@ import {
   CardActions,
   IconButton,
   CardContent,
+  Link,
 } from "@mui/material";
-import AudiotrackSharpIcon from '@mui/icons-material/AudiotrackSharp';
-import PersonSharpIcon from '@mui/icons-material/PersonSharp';
+import AudiotrackSharpIcon from "@mui/icons-material/AudiotrackSharp";
+import PersonSharpIcon from "@mui/icons-material/PersonSharp";
 import { useSearchQuery } from "../services/api";
+import nextLink from "next/link";
 
 export default function Home() {
   const { data, isLoading, isSuccess } = useSearchQuery();
@@ -35,7 +36,7 @@ export default function Home() {
         >
           {data.response.hits.map((hits, id) => (
             <Grid item key={id}>
-              <Card raised sx={{ maxWidth: 400 }}>
+              <Card raised sx={{ maxWidth: 350 }}>
                 <CardHeader
                   avatar={
                     <Avatar
@@ -49,6 +50,7 @@ export default function Home() {
                 />
                 <CardMedia
                   component="img"
+                  height={300}
                   src={hits.result.header_image_thumbnail_url}
                   alt={hits.result.title_with_featured}
                 />
@@ -60,9 +62,13 @@ export default function Home() {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <IconButton aria-label="Artist Link">
-                  <PersonSharpIcon />
-                  </IconButton>
+                  <nextLink passHref>
+                    <Link href={hits.result.primary_artist.api_path}>
+                      <IconButton aria-label="Artist Link">
+                        <PersonSharpIcon />
+                      </IconButton>
+                    </Link>
+                  </nextLink>
                   <IconButton aria-label="Song Link">
                     <AudiotrackSharpIcon />
                   </IconButton>
@@ -75,5 +81,3 @@ export default function Home() {
     </Box>
   );
 }
-
-
