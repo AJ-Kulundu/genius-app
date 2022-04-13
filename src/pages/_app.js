@@ -1,15 +1,16 @@
 import "../styles/globals.css";
 import { Provider } from "react-redux";
 import { store } from "../app/store";
-import { ThemeProvider,createTheme } from "@mui/material/styles";
-import { useState } from 'react';
+import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
+import { useState } from "react";
 import NavBar from "../components/NavBar";
 
 function MyApp({ Component, pageProps }) {
-  const [toggleDark,setToggleDark] = useState(true);
+  const [toggleDark, setToggleDark] = useState(false);
+  const themeMode = useTheme();
   const theme = createTheme({
     palette: {
-      type: toggleDark ? 'dark':'light',
+      mode: toggleDark ? "dark" : "light",
       primary: {
         main: "#ffeb3b",
       },
@@ -26,13 +27,16 @@ function MyApp({ Component, pageProps }) {
       info: {
         main: "#1e88e5",
       },
+      background: {
+        default: toggleDark ? "#303030" : "#fafafa",
+      },
     },
   });
-  console.log(toggleDark)
+  
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <NavBar functions={[toggleDark,setToggleDark]}/>
+        <NavBar functions={[toggleDark, setToggleDark]} />
         <Component {...pageProps} />
       </ThemeProvider>
     </Provider>
