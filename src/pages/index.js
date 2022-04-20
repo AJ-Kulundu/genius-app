@@ -1,6 +1,5 @@
 import {
   Typography,
-  Button,
   Grid,
   Card,
   CardHeader,
@@ -15,20 +14,23 @@ import {
 import AudiotrackSharpIcon from "@mui/icons-material/AudiotrackSharp";
 import PersonSharpIcon from "@mui/icons-material/PersonSharp";
 import { useSearchQuery } from "../services/api";
-import nextLink from "next/link";
+import Loader from "react-loaders";
 
 export default function Home() {
   const { data, isLoading, isSuccess } = useSearchQuery();
 
   return (
     <Box mt={4}>
-      {isLoading && <Typography>Loading...</Typography>}
+      {isLoading && (
+        <Box height="70vh">
+          <Loader type="pacman" />
+        </Box>
+      )}
       {isSuccess && (
         <Grid
           container
           direction="row"
           columns={2}
-          spacing={12}
           justifyContent="space-around"
           alignItems="center"
           rowSpacing={4}

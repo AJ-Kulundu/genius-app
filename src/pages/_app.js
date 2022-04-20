@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../styles/loader.scss";
 import { Provider } from "react-redux";
 import { store } from "../app/store";
 import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
