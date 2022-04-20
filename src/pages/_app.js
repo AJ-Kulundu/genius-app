@@ -4,6 +4,7 @@ import { store } from "../app/store";
 import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import NavBar from "../components/NavBar";
+import Footer from '../components/Footer';
 
 function MyApp({ Component, pageProps }) {
   const [toggleDark, setToggleDark] = useState(false);
@@ -38,6 +39,7 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <NavBar functions={[toggleDark, setToggleDark]} />
         <Component {...pageProps} />
+        <Footer />
       </ThemeProvider>
     </Provider>
   );
