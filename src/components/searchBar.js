@@ -1,17 +1,19 @@
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
+import Button from "@mui/material/Button";
 
-const SearchBar = () => {
+import TextField from "@mui/material/TextField";
+
+import Stack from '@mui/material/Stack'
+
+const SearchBar = ({ func }) => {
+  const [search, setSearch] = func;
+
   return (
-    <TextField label="Search Artist" variant="outlined">
-      <InputAdornment position="end">
-        <IconButton >
-          <SearchIcon />
-        </IconButton>
-      </InputAdornment>
-    </TextField>
+    <Stack spacing={2} direction={"row"}>
+      <TextField label="Search Artist" variant="outlined"  />
+      <Button color="primary" variant="contained" ml={2} onClick={(e) => setSearch(e.target.value)}>
+        Search
+      </Button>
+    </Stack>
   );
 };
 
